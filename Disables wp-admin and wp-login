@@ -1,0 +1,6 @@
+htaccess file allows IP. Disables wp-admin and wp-login page for others
+
+RewriteCond %{REQUEST_URI} ^(.*)?wp-login\.php(.*)$ [OR]
+RewriteCond %{REQUEST_URI} ^(.*)?wp-admin$
+RewriteCond %{REMOTE_ADDR} !^182\.70\.112\.55$
+RewriteRule ^(.*)$ - [R=403,L]
