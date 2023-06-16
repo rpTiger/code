@@ -1,0 +1,63 @@
+<div class="col-md-12">
+	
+	<?php
+	
+	require 'admin/api/functions.php';
+	$conn = conn();
+									
+	$showRecordPerPage = 25;
+	if(isset($_GET['page']) && !empty($_GET['page'])){
+	$currentPage = $_GET['page'];
+	}else{
+	$currentPage = 1;
+	}
+	$startFrom = ($currentPage * $showRecordPerPage) - $showRecordPerPage;
+	$totalEmpSQL = "SELECT * FROM sem WHERE is_visible = 1";
+	$allEmpResult = mysqli_query($conn, $totalEmpSQL);
+	$totalEmployee = mysqli_num_rows($allEmpResult);
+	$lastPage = ceil($totalEmployee/$showRecordPerPage);
+	$firstPage = 1;
+	$nextPage = $currentPage + 1;
+	$previousPage = $currentPage - 1;
+	$empSQL = "SELECT * FROM `sem` WHERE is_visible = 1 ORDER BY shortby LIMIT $startFrom, $showRecordPerPage ";
+	$empResult = mysqli_query($conn, $empSQL);
+	?>
+	<?php
+		while($emp = mysqli_fetch_assoc($empResult)){
+	?>
+	
+	<div class="reg-box1 mb-3">
+		<a href="admin/<?php echo $emp["file_link"];?>" target="_blank">
+			<div class="bg-grey02 ">
+				<div class="reg-download-pdf">
+					<span><i class="fa fa-file-pdf-o" aria-hidden="true"></i></span> <?php echo $emp["title"];?>
+				</div>
+			</div>
+		</a>
+	</div>
+	
+	
+	<?php
+		}
+	?>
+	
+	<!-- pag -->
+	<nav aria-label="Page navigation example mt-5">
+		<ul class="pagination justify-content-center">
+			<li class="page-item <?php if($currentPage <= 1){ echo 'disabled'; } ?>">
+				<a class="page-link"
+				href="<?php if($currentPage <= 1){ echo '#'; } else { echo "?page=" . $previousPage; } ?>">Previous</a>
+			</li>
+			<?php for($i = 1; $i <= $lastPage; $i++ ): ?>
+			<li class="page-item <?php if($currentPage == $i) {echo 'active'; } ?>">
+				<a class="page-link" href="?page=<?= $i; ?>"> <?= $i; ?> </a>
+			</li>
+			<?php endfor; ?>
+			<li class="page-item <?php if($currentPage >= $lastPage) { echo 'disabled'; } ?>">
+				<a class="page-link"
+				href="<?php if($currentPage >= $lastPage){ echo '#'; } else {echo "?page=". $nextPage; } ?>">Next</a>
+			</li>
+		</ul>
+	</nav>
+	<!-- pag -->
+</div>
