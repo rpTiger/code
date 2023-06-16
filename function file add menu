@@ -17,3 +17,12 @@ add_action( 'init', 'wpb_custom_new_menu' );
 
 
 //menus
+/////////////////////// menu header file///////////////////////////
+<?php
+                          wp_nav_menu( array(
+                          'menu'            => 'about-menu',
+                          'theme_location' => 'about-menu',
+                          'container' => 'ul',
+                          'menu_class' => 'dropdown-menu sm-nowrap',
+                          ) );
+                          ?>
