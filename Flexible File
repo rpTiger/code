@@ -1,0 +1,87 @@
+<?php
+
+  // Check value exists.
+  if( have_rows('investor_content') ):
+
+      // Loop through rows.
+      while ( have_rows('investor_content') ) : the_row();
+
+          // Case: Paragraph layout.
+          if( get_row_layout() == 'investor_breadcumb' ):
+          include 'includes/investor_fields/investor_breadcumb.php';
+              // Do something...
+
+          // Case: Paragraph layout.
+          elseif( get_row_layout() == 'sea_investor_breadcumb' ):
+          include 'includes/investor_fields/sea_investor_breadcumb.php';
+              // Do something...
+
+          // Case: Paragraph layout.
+          elseif( get_row_layout() == 'ss_investor_breadcumb' ):
+          include 'includes/investor_fields/ss_investor_breadcumb.php';
+              // Do something...
+
+          // Case: Paragraph layout.
+          elseif( get_row_layout() == 'shareholder_service_transfer' ):
+          include 'includes/investor_fields/shareholder_service_transfer.php';
+              // Do something...
+
+          // Case: Paragraph layout.
+          elseif( get_row_layout() == 'shareholder_service_unclaim_divident' ):
+          include 'includes/investor_fields/shareholder_service_unclaim_divident.php';
+              // Do something...
+
+          // Case: Paragraph layout.
+          elseif( get_row_layout() == 'shareholder_service_address_change' ):
+          include 'includes/investor_fields/shareholder_service_address_change.php';
+              // Do something...
+
+          // Case: Paragraph layout.
+          elseif( get_row_layout() == 'financial_reports' ):
+          include 'includes/investor_fields/financial_reports.php';
+              // Do something...
+
+          // Case: Download layout.
+          elseif( get_row_layout() == 'committees_table' ):
+            include 'includes/investor_fields/committees_table.php';
+              // Do something...
+
+          // Case: Download layout.
+          elseif( get_row_layout() == 'registrar_share_transfer_agent' ):
+            include 'includes/investor_fields/registrar_share_transfer_agent.php';
+              // Do something...
+
+          // Case: Download layout.
+          elseif( get_row_layout() == 'investor_files_widget' ):
+            include 'includes/investor_fields/investor_files_widget.php';
+              // Do something...
+
+            // Case: Download layout.
+          elseif( get_row_layout() == 'investor_files_widget_others' ):
+            include 'includes/investor_fields/investor_files_widget_others.php';
+              // Do something...
+
+          // Case: Download layout.
+          elseif( get_row_layout() == 'audio_widget' ):
+            include 'includes/investor_fields/audio_widget.php';
+
+            // Case: Download layout.
+            elseif( get_row_layout() == 'content_box' ):
+              include 'includes/investor_fields/content_box.php';
+                     
+       elseif( get_row_layout() == 'transcript_files_widget' ):
+              include 'includes/investor_fields/transcript_files_widget.php';
+                // Do something...
+
+
+
+          endif;
+
+      // End loop.
+      endwhile;
+
+  // No value.
+  else :
+      // Do something...
+  endif;
+  ?>
