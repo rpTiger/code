@@ -1,0 +1,8 @@
+<?php   function get_nopaging_url() {
+global $wp;
+$current_url =  home_url( $wp->request );
+$pattern = '/page(\/)*([0-9\/])*/i';
+$url = preg_replace($pattern, '', $GLOBALS['wp']->request);
+return trailingslashit( $url );
+}
+echo get_nopaging_url(); ?>
