@@ -1,0 +1,31 @@
+// counter
+function getPostViews($postID){
+    $count_key = 'post_views_count';
+    $count = get_post_meta($postID, $count_key, true);
+    if($count==''){
+        delete_post_meta($postID, $count_key);
+        add_post_meta($postID, $count_key, '0');
+        return "0";
+    }
+    return $count.'';
+}
+function setPostViews($postID) {
+    $count_key = 'post_views_count';
+    $count = get_post_meta($postID, $count_key, true);
+    if($count==''){
+        $count = 0;
+        delete_post_meta($postID, $count_key);
+        add_post_meta($postID, $count_key, '0');
+    }else{
+        $count++;
+        update_post_meta($postID, $count_key, $count);
+    }
+}
+// Remove issues with prefetching adding extra views
+remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
+
+
+
+///////////////// in php file get deta ////////////////////////////
+
+<div class="copy-text2">Total views : <span class="total-view"><?php echo getPostViews(2); ?></span> &nbsp;|&nbsp; Last Updated : <span class="last-update"><?php echo date_i18n( 'd/m/Y', get_user_meta( 1, 'when_last_login', true ) ) ?></span></div>
